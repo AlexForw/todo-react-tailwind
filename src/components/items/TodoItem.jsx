@@ -2,9 +2,11 @@ import React from "react";
 import CheckBox from './CheckBox';
 
 
-const TodoItem = ({todo}) => { 
+const TodoItem = ({todo, checkComplete}) => { 
+
+
     return(
-        <button className="mb-3 flex items-center rounded-2xl p-5 bg-gray-800 w-full">
+        <button onClick={() => checkComplete(todo.id)} className="mb-3 flex items-center rounded-2xl p-5 bg-gray-800 w-full">
             <CheckBox isCompleted={todo.isCompleted}/>
                 <div>{todo.title}</div>
             
