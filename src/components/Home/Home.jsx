@@ -1,27 +1,14 @@
 import React, { useState } from "react";
 import TodoItem from "../items/TodoItem";
 
-const data = [
-    {
-        id: Math.random(),
-        title:'Today you should go away with your goods',
-        isCompleted: false,
-    },
-    {
-        id: Math.random(),
-        title:'Makes girlfriend suck your thing',
-        isCompleted: false,
-    },
-    {
-        id: Math.random(),
-        title:'Helps 10 people with their assigments',
-        isCompleted: false,
-    },
-]
+
 
 const Home = () =>{
 
-    const [todos, setTodos] = useState(data)
+    const [value,setValue] = useState('')
+
+
+    const [todos, setTodos] = useState([])
 
     const checkComplete = (id) =>{
         const copyArr = [...todos]
@@ -30,16 +17,18 @@ const Home = () =>{
         setTodos(copyArr)
     }
     
-    const removeTodo = id => {
-        const newArr = todos.filter(elem => elem.id >= 0.5)
-        setTodos(newArr)
-        console.log(newArr)
-        console.log(todos)
+    const removeTodo = todo => {
+        setTodos(todos.filter(elem => elem.id !== todo.id))
+        console.log(todos);
     }
 
     return(
         <div className="w-4/5 mx-auto text-white ">
             <h1 className="text-2xl text-center font-bold mb-10">Todo-react</h1>
+            <div>
+                <input type="text" value={value} className="text-black" onChange={(elem)=> setValue(elem.target.value)}/>
+                <button onClick={() => setTodos([...todos, value])}>Click</button>
+            </div>
             {
                 todos.map((elem,i)=>{
                     // console.log(elem)
